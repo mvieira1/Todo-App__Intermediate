@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO App</title>
+
+    <!-- Font Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS external style sheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript external file -->
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="background">
+        <!--
+        <img src="images/bg-desktop-dark.jpg" alt="background image">
+        ver linha 46, na CSS sheet
+        -->
+    </div>
+    
+    <div class="container">
+        <div class="header">
+
+            <div class="title">
+                <h1>TODO</h1>
+            </div>
+
+            <div class="theme">
+                <img src="images/icon-sun.svg" alt="sun-icon" id="icon-id">
+            </div>
+        </div>
+
+        <div class="error-msg"></div>
+            
+        <div class="new-todo">
+            <div class="check">
+                <div class="check-mark">
+                </div>
+            </div>
+
+            <div class="new-todo-input">
+                <form>
+                    <input type="text" name="new-todo" placeholder="Create a new todo...">
+                </form>
+            </div>
+        </div>
+
+        <div class="todo-items-wrapper">
+            <div class="todo-items">
+                    <!-- Vou adicionar os vários todos em JavaScript -->
+                <!--
+                <div class="todo-item active">
+                    <div class="check">
+                        <div class="check-mark">
+                            <img src="images/icon-check.svg" alt="icon-check" style="visibility: hidden">
+                        </div>
+                    </div>
+
+                    <div class="todo-text">
+                        
+                    </div>
+
+                    <div class="delete-img">
+                        <img src="images/icon-cross.svg" alt="icon-delete" class="delete">
+                    </div>
+                </div>
+                -->
+            </div>
+            
+            <div class="todo-items-info">
+                <div class="items-left">
+                   <span>0</span> items left
+                </div>
+                <div class="items-statuses">
+                    <span class="activeState">All</span>
+                    <span>Active</span>
+                    <span>Completed</span>
+                </div>
+                <div class="clear-items">
+                    Clear Completed
+                </div>
+            </div>
+        </div>
+        
+        <div class="todo-items-info mobile">
+            <div class="items-statuses">
+                <span class="activeState">All</span>
+                <span>Active</span>
+                <span>Completed</span>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>

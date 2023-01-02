@@ -1,0 +1,260 @@
+/* CSS Reset */
+*{
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* variables to toggle the theme between dark mode (default) and light mode
+:root <=> <html> element */
+:root{
+    --background-color: hsl(235, 21%, 11%);
+    --todo-color: hsl(235, 24%, 19%);
+    --text-color: hsl(234, 39%, 85%);
+    --text-color-two: hsl(233, 14%, 35%);
+    --border-color: hsl(237, 14%, 26%);
+    --msg-color: hsl(234, 39%, 85%);
+}
+
+.light-theme{
+    --background-color: hsl(236, 33%, 92%);
+    --todo-color: hsl(0, 0%, 98%);
+    --text-color: hsl(233, 19%, 35%);
+    --text-color-two: hsl(233, 19%, 35%);
+    --border-color: hsl(219, 15%, 48%);
+    --msg-color: hsl(236, 33%, 92%);
+}
+
+body{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+    background-color: var(--background-color);
+}
+
+.background{
+    position: absolute; /* em relação ao parente mais próximo, i.e., <body> container. Sai do fluxo do documento */
+    top: 0;
+    left: 0;
+    height: 45%;
+    /*as imagens disponibilizadas para a versão mobile são muito pequenas... Só têm 200px de altura. Mesmo que alterasse a height do background para essas larguras de ecrã, iam ficar tremidas (testei)*/
+    width: 100%;
+    z-index: -1;
+    background-image: url(images/bg-desktop-dark.jpg);
+    background-size: cover;
+}
+
+/* ATENÇÃO: tinha feito assim, mas vou alterar a imagem de fundo, consoante o device. Para mobile, vou usar uma imagem mais pequena, para diminuir o loading time.
+.background img{
+    width: 100%; (da largura do div.background)
+    height: 100%;
+    object-fit: cover; (the image keeps its aspect ratio and fills the given dimension)
+    object-position: 30%;
+}
+*/
+
+.container{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1{
+    color: white;
+    font-size: 50px;
+    letter-spacing: 10px;
+}
+
+.theme{
+    cursor: pointer;
+}
+
+.error-msg{
+    position: absolute; /* removi do flow do documento para não interferir com o layout que tinha construído antes */
+    margin-top: 12px;
+    color: var(--msg-color);
+}
+
+.new-todo{
+    background-color: var(--todo-color);
+    height: 70px; 
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.check, .delete-img{
+    display: flex;
+    justify-content: center;
+    width: 70px;
+}
+
+.check-mark{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.check-mark:hover{
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    transition: 0.3s;
+}
+
+.check-mark-completed{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    /* border: none */
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.check-mark img{
+    pointer-events: none; /*especifica sob que circunstâncias é que um elemento pode ser o target de um pointer event*/
+}
+
+.line-through{
+    text-decoration: line-through;
+    color: var(--text-color-two);
+}
+
+.new-todo-input{
+    flex: 1;
+}
+
+form{
+    width: 100%; /* da width do div.new-todo-input */
+}
+
+input{
+    width: 100%; /* da width do <form> */
+    padding: 10px 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+input::placeholder{
+    color: var(--text-color-two);
+}
+
+.todo-items-wrapper{
+    margin-top: 30px;
+    margin-bottom: 40px;
+    background-color: var(--todo-color);
+    box-shadow: 10px 10px 10px hsla(0, 0%, 0%, 0.5);
+    border-radius: 6px;
+}
+
+.todo-item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 70px; /*para, se adicionarmos um todo com muitos caracteres, o texto não sair do container */
+    padding: 10px 0;
+    background-color: var(--todo-color); /* já tinha definido uma background-color para o div.todo-items-wrapper, porém, como vou fazer um hover effect, em que cada div.todo-item sobe 2 px, com blur, se não definir uma bg-color, ao subir, vamos ver uma caixa transparente + blur (e não é isso que quero) */
+    border-radius: 6px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.todo-text{
+    flex: 1;
+}
+
+.todo-item:hover{
+    box-shadow: 0px 0px 10px hsla(0, 0%, 0%, 0.5);
+    transform: translateY(-2px);
+    transition: 0.3s;
+}
+
+.todo-items-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 50px;
+    color: var(--text-color-two);
+    font-size: 15px;
+    border-radius: 6px;
+}
+
+/*Desktop View*/
+.mobile{
+    display: none;
+}
+
+.items-statuses span{
+    cursor: pointer;
+    padding: 0 5px;
+    font-weight: 700;
+}
+
+.items-statuses span:hover,
+.activeState,
+.clear-items:hover{
+    color: hsl(220, 98%, 61%);
+}
+
+.clear-items{
+    cursor: pointer;
+}
+
+/*Tablet & Mobile Views*/
+/*Breakpoints: 1024px = laptop; 768px = tablet; 480px = mobile*/
+
+@media(max-width: 624px){ 
+    /* escolhi esta max-width pq a partir daqui, a width do device (tablet até 768px; laptop/desktop a partir daí) já me parece grande o suficiente para o layout ser o mesmo que o da desktop view */
+
+    /*não mostra a class .items-status da Desktop View*/
+    .todo-items-info .items-statuses{
+        display: none;
+    }
+    
+    /*mostra a class .item-status da tablet/mobile view*/
+    .mobile .items-statuses{
+        display: flex;
+    }
+    
+    .mobile{
+        display: flex;
+        background-color: var(--todo-color);
+        justify-content: center;
+        box-shadow: 10px 10px 10px hsla(0, 0%, 0%, 0.5);
+    }
+
+    .container{
+        width: 80%;
+    }
+}
+
+@media(max-width: 480px){
+
+    .background{
+        background-image: url(images/bg-mobile-dark.jpg);
+    }
+
+    /*podia ter usado max-width's também. Por ex.,
+    .container{
+        max-width: 430px;
+    }*/
+
+    .container{
+        width: 90%;
+    }
+}
